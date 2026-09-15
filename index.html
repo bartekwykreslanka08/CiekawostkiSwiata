@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Najdziwniejsza strona na świecie</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f7f7f7;
+    color: #111;
+}
+
+/* NAGŁÓWEK */
+
+header {
+    padding: 55px 20px 35px;
+    text-align: center;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(32px, 8vw, 70px);
+    font-weight: 900;
+    letter-spacing: -3px;
+}
+
+header p {
+    margin: 15px 0 0;
+    color: #777;
+    font-size: 16px;
+}
+
+/* MENU */
+
+main {
+    width: min(1100px, 100%);
+    margin: auto;
+    padding: 30px 18px 60px;
+}
+
+.menu {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.card {
+    position: relative;
+    min-height: 190px;
+    padding: 25px;
+    border-radius: 24px;
+    background: white;
+    border: 1px solid #ddd;
+    text-decoration: none;
+    color: #111;
+    overflow: hidden;
+    transition: .2s;
+}
+
+.card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 35px rgba(0,0,0,.12);
+}
+
+.card:active {
+    transform: scale(.98);
+}
+
+.emoji {
+    font-size: 52px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.description {
+    color: #777;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+.number {
+    position: absolute;
+    right: 18px;
+    top: 18px;
+    color: #ccc;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+/* INFORMACJA */
+
+.info {
+    text-align: center;
+    color: #999;
+    margin-top: 35px;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>NAJDZIWNIEJSZA STRONA NA ŚWIECIE</h1>
+
+    <p>
+        Miejsce, którego prawdopodobnie nie potrzebowałeś.
+        Ale już tu jesteś.
+    </p>
+</header>
+
+<main>
+
+    <div class="menu">
+
+        <!-- ZAKŁADKA 1 -->
+
+        <a href="kolko-krzyzyk.html" class="card">
+            <div class="number">01</div>
+
+            <div class="emoji">⭕❌</div>
+
+            <div class="title">
+                Kółko i krzyżyk PRO
+            </div>
+
+            <div class="description">
+                Rozbudowana walka z botem.
+                Spróbuj go pokonać.
+            </div>
+        </a>
+
+
+        <!-- KOLEJNE ZAKŁADKI -->
+
+        <a href="banan-dvd.html" class="card">
+            <div class="number">02</div>
+
+            <div class="emoji">🍌</div>
+
+            <div class="title">
+                Banan DVD
+            </div>
+
+            <div class="description">
+                Banan odbijający się po całym ekranie.
+            </div>
+        </a>
+
+
+        <a href="uciekajacy-przycisk.html" class="card">
+            <div class="number">03</div>
+
+            <div class="emoji">🔴</div>
+
+            <div class="title">
+                Uciekający przycisk
+            </div>
+
+            <div class="description">
+                Spróbuj go nacisnąć.
+            </div>
+        </a>
+
+
+        <a href="totalny-chaos.html" class="card">
+            <div class="number">04</div>
+
+            <div class="emoji">🤯</div>
+
+            <div class="title">
+                TOTALNY CHAOS
+            </div>
+
+            <div class="description">
+                Nie wiadomo, co się wydarzy.
+            </div>
+        </a>
+
+
+        <a href="kaczka.html" class="card">
+            <div class="number">05</div>
+
+            <div class="emoji">🦆</div>
+
+            <div class="title">
+                Kaczka
+            </div>
+
+            <div class="description">
+                Po prostu kaczka.
+            </div>
+        </a>
+
+
+        <a href="nic.html" class="card">
+            <div class="number">06</div>
+
+            <div class="emoji">🫥</div>
+
+            <div class="title">
+                NIC
+            </div>
+
+            <div class="description">
+                Absolutnie nic.
+            </div>
+        </a>
+
+    </div>
+
+    <div class="info">
+        ⚠️ Korzystasz z tej strony na własną odpowiedzialność.
+    </div>
+
+</main>
+
+</body>
+</html>
