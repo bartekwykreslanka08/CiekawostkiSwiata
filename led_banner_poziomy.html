@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LED Banner</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#090a0c;color:#fff;font-family:Arial,Helvetica,sans-serif}
+body{display:flex;align-items:center;justify-content:center}
+
+/* EKRAN STARTOWY */
+#setup{
+ width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+ padding:22px;background:#090a0c;
+}
+.card{
+ width:min(620px,100%);background:#15171b;border:1px solid #2b2e35;
+ border-radius:28px;padding:28px;box-shadow:0 20px 70px #000;
+}
+.logo{font-size:13px;font-weight:800;letter-spacing:.14em;color:#00e5ff;margin-bottom:12px}
+h1{font-size:clamp(30px,8vw,54px);margin:0 0 10px}
+.desc{color:#9297a1;margin:0 0 25px;line-height:1.5}
+input{
+ width:100%;padding:18px;border-radius:17px;border:1px solid #363941;
+ background:#090a0c;color:white;font-size:20px;outline:none;
+}
+input:focus{border-color:#00e5ff;box-shadow:0 0 0 4px #00e5ff18}
+.start{
+ width:100%;margin-top:13px;padding:17px;border:0;border-radius:17px;
+ background:#00aaff;color:#001018;font-size:18px;font-weight:800;cursor:pointer;
+}
+.colors{display:flex;gap:9px;margin-top:18px}
+.color{width:42px;height:42px;padding:0;border-radius:13px;border:2px solid #ffffff22;cursor:pointer}
+.c1{background:#00e5ff}.c2{background:#00ff55}.c3{background:#ffe600}
+.c4{background:#ff1744}.c5{background:#ff2bd6}.c6{background:white}
+.color.selected{outline:3px solid white;outline-offset:2px}
+
+/* EKRAN NAPISU */
+#display{
+ display:none;position:relative;width:100vw;height:100vh;background:#000;
+ overflow:hidden;align-items:center;justify-content:center;
+}
+#display:before{
+ content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;
+ background-image:radial-gradient(circle,rgba(255,255,255,.15) 1px,transparent 1.5px);
+ background-size:5px 5px;
+}
+#display:after{
+ content:"";position:absolute;inset:0;pointer-events:none;
+ background:linear-gradient(transparent 49%,rgba(255,255,255,.035) 50%,transparent 51%);
+ background-size:100% 8px;
+}
+.message{
+ position:relative;z-index:2;color:#00e5ff;font-weight:900;
+ font-size:clamp(50px,12vw,180px);line-height:1;
+ white-space:nowrap;text-transform:uppercase;
+ letter-spacing:.04em;text-align:center;
+ text-shadow:0 0 8px currentColor,0 0 25px currentColor,0 0 60px currentColor;
+}
+.exit{
+ position:absolute;z-index:5;right:18px;top:18px;width:45px;height:45px;
+ border-radius:50%;border:1px solid #ffffff33;background:#ffffff12;color:white;
+ font-size:20px;cursor:pointer;opacity:.55;
+}
+.exit:hover{opacity:1}
+</style>
+</head>
+<body>
+
+<section id="setup">
+ <div class="card">
+  <div class="logo">LED BANNER</div>
+  <h1>Wpisz swój napis</h1>
+  <p class="desc">Wybierz tekst, kolor, a następnie pokaż go poziomo na całym ekranie.</p>
+  <input id="text" maxlength="80" autocomplete="off" placeholder="Np. WITAJ!">
+  <div class="colors">
+   <button class="color c1 selected" data-color="#00e5ff"></button>
+   <button class="color c2" data-color="#00ff55"></button>
+   <button class="color c3" data-color="#ffe600"></button>
+   <button class="color c4" data-color="#ff1744"></button>
+   <button class="color c5" data-color="#ff2bd6"></button>
+   <button class="color c6" data-color="#ffffff"></button>
+  </div>
+  <button class="start" id="show">POKAŻ NAPIS</button>
+ </div>
+</section>
+
+<section id="display">
+ <button class="exit" id="back">×</button>
+ <div class="message" id="message">WITAJ!</div>
+</section>
+
+<script>
+const setup=document.getElementById('setup');
+const display=document.getElementById('display');
+const input=document.getElementById('text');
+const message=document.getElementById('message');
+let selectedColor='#00e5ff';
+
+document.querySelectorAll('.color').forEach(btn=>{
+ btn.onclick=()=>{
+  document.querySelectorAll('.color').forEach(x=>x.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedColor=btn.dataset.color;
+ };
+});
+
+function showText(){
+ const value=input.value.trim() || 'WITAJ!';
+ message.textContent=value.toUpperCase();
+ message.style.color=selectedColor;
+ setup.style.display='none';
+ display.style.display='flex';
+
+ // Pełny ekran na urządzeniach, które na to pozwalają.
+ document.documentElement.requestFullscreen?.().catch(()=>{});
+}
+document.getElementById('show').onclick=showText;
+input.addEventListener('keydown',e=>{if(e.key==='Enter')showText()});
+
+document.getElementById('back').onclick=()=>{
+ if(document.fullscreenElement) document.exitFullscreen?.().catch(()=>{});
+ display.style.display='none';
+ setup.style.display='flex';
+};
+</script>
+</body>
+</html>
